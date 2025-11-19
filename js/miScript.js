@@ -38,8 +38,6 @@ class CalculadoraImc {
         img.src = imagen;
 
         return `
-            <strong> TU PESO ES: ${this.peso.toFixed(1)} kg <br> </strong>
-            <strong> TU ALTURA ES: ${this.altura.toFixed(2)} m <br> </strong>
             <strong> TU IMC ES: ${imcFinal} <br> </strong>
             <strong>${comentario}</strong>
         `;
@@ -64,3 +62,4 @@ document.getElementById('forma').addEventListener("submit", function (e) {
 
     
 });
+
