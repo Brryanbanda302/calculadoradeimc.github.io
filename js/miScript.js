@@ -1,73 +1,66 @@
-
-class calculadoraImc {
-    constructor(a, p) {
-        this.altura = Number(a);
-        this.peso = Number(p);
+class CalculadoraImc {
+    constructor(altura, peso) {
+        this.altura = Number(altura);
+        this.peso = Number(peso);
     }
 
     obtenerImc() {
-        const imc = this.peso / (this.altura * this.altura);
-        return imc;
+        return this.peso / (this.altura * this.altura);
     }
 
     generarResumen() {
-        const resultadoImc = this.obtenerImc();
-        const imcFinal = resultadoImc.toFixed(2);
+        const imc = this.obtenerImc();
+        const imcFinal = imc.toFixed(2);
 
-        let nivel = '';
         let comentario = '';
-        let imagen;
+        let imagen = '';
 
-        const immagen = document.getElementById("img");
-        immagen.style.display = "block";
+        const img = document.getElementById("img");
+        img.style.display = "block"; // ACTIVAR IMAGEN
 
-
-        if (resultadoImc < 18.5) {
-            nivel = 'PESO BAJO';
-            comentario = 'ESTAS BAJO DE PESO, DEBERÍAS CONSULTAR A UN ESPECIALISTA';
+        if (imc < 18.5) {
+            comentario = 'PESO BAJO — DEBERÍAS CONSULTAR A UN ESPECIALISTA.';
             imagen = 'images/imagen1.png';
-        }
-
-        else if (resultadoImc >= 18.5 && resultadoImc < 25.0) {
-            nivel = 'PESO NORMAL';
-            comentario = 'ESTAS NORMAL DE PESO, SIGUE ASÍ Y CUIDA TU SALUD';
+        } 
+        else if (imc >= 18.5 && imc < 25) {
+            comentario = 'PESO NORMAL — SIGUE ASÍ Y CUIDA TU SALUD.';
             imagen = 'images/imagen2.png';
-        }
-
-        else if (resultadoImc >= 25.0 && resultadoImc < 30.0) {
-            nivel = 'SOBRE PESO';
-            comentario = 'ESTAS UN POCO PASADO DE TU PESO NORMAL, CUIDATE UN POCO MÁS';
+        } 
+        else if (imc >= 25 && imc < 30) {
+            comentario = 'SOBREPESO — CUIDATE UN POCO MÁS.';
             imagen = 'images/imagen3.png';
-        }
+        } 
         else {
-            nivel = 'OBECIDAD';
-            comentario = 'ESTAS SUBIDO DE PESO, DEBERÍAS CONSULTAR A UN ESPECIALISTA';
+            comentario = 'OBESIDAD — CONSULTA A UN ESPECIALISTA.';
             imagen = 'images/imagen4.jpg';
         }
-        document.getElementById("img").src = imagen;
+
+        img.src = imagen;
 
         return `
             <strong> TU PESO ES: ${this.peso.toFixed(1)} kg <br> </strong>
             <strong> TU ALTURA ES: ${this.altura.toFixed(2)} m <br> </strong>
-            <strong> TU IMC ES: ${imcFinal}<br>
-            ${comentario}</strong>
+            <strong> TU IMC ES: ${imcFinal} <br> </strong>
+            <strong>${comentario}</strong>
         `;
     }
-
 }
 
 document.getElementById('forma').addEventListener("submit", function (e) {
     e.preventDefault();
+
     const peso = document.getElementById('peso').value;
     const altura = document.getElementById('altura').value;
+
     if (peso <= 0 || altura <= 0) {
-        document.getElementById('resumen').innerHTML = 'NUMERO NO VALIDO, PRUEBA CON UN NUMERO MÁS ALTO';
-        document.getElementById("img").style.display = "none";
+        document.getElementById('resumen').innerHTML = 'NÚMERO NO VÁLIDO. INTENTA DE NUEVO.';
+        document.getElementById('img').style.display = "none";
         return;
     }
 
-    const imc = new calculadoraImc(altura, peso);
-
+    const imc = new CalculadoraImc(altura, peso);
     document.getElementById('resumen').innerHTML = imc.generarResumen();
 
+
+    
 });
