@@ -19,19 +19,19 @@ class CalculadoraImc {
         img.style.display = "block"; // ACTIVAR IMAGEN
 
         if (imc < 18.5) {
-            comentario = 'PESO BAJO — DEBERÍAS CONSULTAR A UN ESPECIALISTA.';
+            comentario = 'PESO BAJO — ESTAS BAJO DE PESO, DEBERÍAS CONSULTAR A UN ESPECIALISTA';
             imagen = 'images/imagen1.png';
         } 
         else if (imc >= 18.5 && imc < 25) {
-            comentario = 'PESO NORMAL — SIGUE ASÍ Y CUIDA TU SALUD.';
+            comentario = 'PESO NORMAL — ESTAS NORMAL DE PESO, SIGUE ASÍ Y CUIDA TU SALUD';
             imagen = 'images/imagen2.png';
         } 
         else if (imc >= 25 && imc < 30) {
-            comentario = 'SOBREPESO — CUIDATE UN POCO MÁS.';
+            comentario = 'SOBREPESO — ESTAS UN POCO PASADO DE TU PESO NORMAL, CUIDATE UN POCO MÁS';
             imagen = 'images/imagen3.png';
         } 
         else {
-            comentario = 'OBESIDAD — CONSULTA A UN ESPECIALISTA.';
+            comentario = 'OBESIDAD — ESTAS SUBIDO DE PESO, DEBERÍAS CONSULTAR A UN ESPECIALISTA';
             imagen = 'images/imagen4.jpg';
         }
 
@@ -62,4 +62,5 @@ document.getElementById('forma').addEventListener("submit", function (e) {
 
     
 });
+
 
